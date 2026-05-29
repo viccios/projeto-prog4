@@ -1,0 +1,29 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node ./src/app.js",
+    "dev": "node --watch --env-file=.env ./src/app.js",
+    "lint": "eslint . --fix",
+    "format": "prettier . --write"
+  },
+  "main": "./src/app.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "imports": {
+    "#*": "./src/*"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.4.1",
+    "globals": "^17.6.0",
+    "prettier": "^3.8.3"
+  },
+  "dependencies": {
+    "@scalar/express-api-reference": "^0.9.19",
+    "express": "^5.2.1",
+    "swagger-jsdoc": "^6.3.0"
+  }
+}
