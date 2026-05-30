@@ -1,6 +1,9 @@
 import express from 'express';
 import { apiReference } from '@scalar/express-api-reference';
 import swaggerJsdoc from 'swagger-jsdoc';
+import morgan from 'morgan';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 import helloWorldRouter from '#routes/hello-world.routes.js';
 
 const PORT = process.env.PORT ?? 3000;
@@ -27,7 +30,14 @@ app.use(
     content: openapiSpecification,
   }),
 );
-
+app.use(morgan('dev'));
+app.use(helmet());
+app.use(
+  rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+  }),
+);
 app.use(helloWorldRouter);
 
 app.listen(PORT, () => {
