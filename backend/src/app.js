@@ -27,6 +27,10 @@ app.use(
   '/docs',
   apiReference({
     content: openapiSpecification,
+    defaultHttpClient: {
+      targetKey: 'js',
+      clientKey: 'fetch',
+    },
   }),
 );
 app.use(morgan('dev'));
