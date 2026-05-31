@@ -1,9 +1,10 @@
-import express from 'express';
 import { apiReference } from '@scalar/express-api-reference';
-import swaggerJsdoc from 'swagger-jsdoc';
-import morgan from 'morgan';
-import helmet from 'helmet';
+import express from 'express';
 import rateLimit from 'express-rate-limit';
+import helmet from 'helmet';
+import morgan from 'morgan';
+import swaggerJsdoc from 'swagger-jsdoc';
+
 import helloWorldRouter from '#routes/hello-world.routes.js';
 
 const app = express();
