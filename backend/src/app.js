@@ -6,8 +6,6 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import helloWorldRouter from '#routes/hello-world.routes.js';
 
-const PORT = process.env.PORT ?? 3000;
-
 const app = express();
 
 const options = {
@@ -38,9 +36,6 @@ app.use(
     max: 100,
   }),
 );
-app.use(helloWorldRouter);
+app.use('/api', helloWorldRouter);
 
-app.listen(PORT, () => {
-  console.log(`Server listening at http://localhost:${PORT}.`);
-  console.log(`Docs running at http://localhost:${PORT}/docs.`);
-});
+export default app;
