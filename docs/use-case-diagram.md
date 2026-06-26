@@ -1,3 +1,5 @@
+# Diagrama de Caso de Uso
+
 ```mermaid
 ---
 title: Diagrama de Casos de Uso - Sistema de Adestramento de Animais
