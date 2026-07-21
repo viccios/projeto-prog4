@@ -1,4 +1,4 @@
-import { Sequelize } from "sequelize"
+import { Sequelize } from "sequelize";
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,
@@ -11,4 +11,14 @@ const sequelize = new Sequelize(
   }
 );
 
-module.exports = sequelize;
+export const connectDB = async () => {
+  try {
+    await sequelize.authenticate();
+    console.log('MySQL connected via Sequelize');
+  } catch (err) {
+    console.error('Connection error:', err.message);
+    process.exit(1);
+  }
+};
+
+export default sequelize;
