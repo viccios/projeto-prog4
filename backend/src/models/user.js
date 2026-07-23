@@ -3,7 +3,7 @@ import { DataTypes } from 'sequelize';
 import sequelize from '../config/db.js';
 
 const User = sequelize.define(
-  'User',
+  'user',
   {
     id: {
       type: DataTypes.INTEGER,
