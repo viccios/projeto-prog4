@@ -2,15 +2,21 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 import User from '#models/user.js';
+import {
+  ConflictError,
+  UnauthorizedError,
+  ValidationError,
+} from '#utils/app-errors.util.js';
 
 export async function register(data) {
   const { user_name, email, password } = data;
 
   if (!user_name || !email || !password) {
-    throw {
-      status: 400,
-      message: 'Todos os campos são obrigatórios.',
-    };
+    throw new ValidationError('Todos os campos são obrigatórios', [
+      "'user_name' é obrigatório",
+      "'email' é obrigatório",
+      "'password' é obrigatório",
+    ]);
   }
 
   const existingUser = await User.findOne({
@@ -20,10 +26,7 @@ export async function register(data) {
   });
 
   if (existingUser) {
-    throw {
-      status: 409,
-      message: 'Nome de usuário já está em uso.',
-    };
+    throw new ConflictError('Nome de usuário já está em uso.');
   }
 
   const existingEmail = await User.findOne({
@@ -33,10 +36,7 @@ export async function register(data) {
   });
 
   if (existingEmail) {
-    throw {
-      status: 409,
-      message: 'Email já cadastrado.',
-    };
+    throw new ConflictError('Email já cadastrado.');
   }
 
   const password_hash = await bcrypt.hash(password, 12);
@@ -67,22 +67,13 @@ export async function login(data) {
   });
 
   if (!user) {
-    throw {
-      status: 401,
-      message: 'Usuário inválido.',
-    };
+    throw new UnauthorizedError('Usuário inválido.');
   }
 
-  const passwordMatch = await bcrypt.compare(
-    password,
-    user.password_hash,
-  );
+  const passwordMatch = await bcrypt.compare(password, user.password_hash);
 
   if (!passwordMatch) {
-    throw {
-      status: 401,
-      message: 'Senha inválida.',
-    };
+    throw new UnauthorizedError('Senha inválida.');
   }
 
   const token = jwt.sign(

@@ -5,7 +5,8 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import swaggerJsdoc from 'swagger-jsdoc';
 
-import authRouter from '#routes/auth.routes.js'
+import errorHandler from '#middlewares/error-handler.middleware.js';
+import authRouter from '#routes/auth.routes.js';
 import helloWorldRouter from '#routes/hello-world.routes.js';
 
 const app = express();
@@ -34,6 +35,7 @@ app.use(
     },
   }),
 );
+app.use(express.json());
 app.use(morgan('dev'));
 app.use(helmet());
 app.use(
@@ -43,5 +45,7 @@ app.use(
   }),
 );
 app.use('/api', helloWorldRouter);
-app.use('/api/auth', authRouter)
+app.use('/api/auth', authRouter);
+app.use(errorHandler);
+
 export default app;
