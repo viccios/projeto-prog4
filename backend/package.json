@@ -35,7 +35,8 @@
     "morgan": "^1.11.0",
     "mysql2": "^3.23.2",
     "sequelize": "^6.37.8",
-    "swagger-jsdoc": "^6.3.0"
+    "swagger-jsdoc": "^6.3.0",
+    "zod": "^4.4.3"
   },
   "overrides": {
     "uuid": "^14.0.0"
