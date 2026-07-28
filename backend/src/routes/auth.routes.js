@@ -1,6 +1,8 @@
 import { Router } from 'express';
 
 import * as authController from '#controllers/auth.controller.js';
+import validate from '#middlewares/validation.middleware.js';
+import { userLoginSchema, userRegisterSchema } from '#schemas/user.schema.js';
 
 const router = Router();
 
@@ -12,7 +14,7 @@ const router = Router();
  *     tags:
  *       - Auth
  */
-router.post('/register', authController.register);
+router.post('/register', validate(userRegisterSchema), authController.register);
 
 /**
  * @openapi
@@ -22,6 +24,6 @@ router.post('/register', authController.register);
  *     tags:
  *       - Auth
  */
-router.post('/login', authController.login);
+router.post('/login', validate(userLoginSchema), authController.login);
 
 export default router;

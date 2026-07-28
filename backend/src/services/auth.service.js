@@ -2,22 +2,10 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 import User from '#models/user.js';
-import {
-  ConflictError,
-  UnauthorizedError,
-  ValidationError,
-} from '#utils/app-errors.util.js';
+import { ConflictError, UnauthorizedError } from '#utils/app-errors.util.js';
 
 export async function register(data) {
   const { user_name, email, password } = data;
-
-  if (!user_name || !email || !password) {
-    throw new ValidationError('Todos os campos são obrigatórios', [
-      "'user_name' é obrigatório",
-      "'email' é obrigatório",
-      "'password' é obrigatório",
-    ]);
-  }
 
   const existingUser = await User.findOne({
     where: {
