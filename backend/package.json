@@ -18,23 +18,26 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "eslint": "^10.4.1",
-    "eslint-plugin-simple-import-sort": "^13.0.0",
-    "globals": "^17.6.0",
-    "prettier": "^3.8.3",
+    "eslint": "^10.8.0",
+    "eslint-plugin-simple-import-sort": "^14.0.0",
+    "globals": "^17.8.0",
+    "prettier": "^3.9.6",
     "supertest": "^7.2.2",
-    "vitest": "^4.1.7"
+    "vitest": "^4.1.10"
   },
   "dependencies": {
-    "@scalar/express-api-reference": "^0.9.19",
+    "@scalar/express-api-reference": "^0.10.11",
     "bcryptjs": "^3.0.3",
     "express": "^5.2.1",
-    "express-rate-limit": "^8.5.2",
-    "helmet": "^8.2.0",
+    "express-rate-limit": "^8.6.1",
+    "helmet": "^8.3.0",
     "jsonwebtoken": "^9.0.3",
-    "morgan": "^1.10.1",
-    "mysql2": "^3.23.1",
+    "morgan": "^1.11.0",
+    "mysql2": "^3.23.2",
     "sequelize": "^6.37.8",
     "swagger-jsdoc": "^6.3.0"
+  },
+  "overrides": {
+    "uuid": "^14.0.0"
   }
 }
